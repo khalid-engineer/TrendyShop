@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Features from './pages/Features';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ProductDetail from './pages/ProductDetail'; // ✅ added this
 
-function App() {
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loggedIn);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {isLoggedIn && <Navbar />}
+      <Routes>
+        <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/about" element={isLoggedIn ? <About /> : <Navigate to="/login" />} />
+        <Route path="/contact" element={isLoggedIn ? <Contact /> : <Navigate to="/login" />} />
+        <Route path="/features" element={isLoggedIn ? <Features /> : <Navigate to="/login" />} />
+        <Route path="/product/:id" element={isLoggedIn ? <ProductDetail /> : <Navigate to="/login" />} /> {/* ✅ added route */}
+        <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

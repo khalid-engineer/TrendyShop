@@ -1,0 +1,74 @@
+/* PageStyles.css */
+
+.page-container {
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom right, #f8fafc, #ffffff);
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.card-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.info-card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: #4f46e5;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  color: #4a5568;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
