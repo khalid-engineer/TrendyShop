@@ -18,7 +18,7 @@ Login Page
 Description: This image shows the Login page with fields for username and password, styled with a clean design featuring a lock icon and a blue "Login" button, ensuring a secure entry point.
 
 Contact Us
-![Contact Us](/src/Contact.png)
+![Contact Us](/src/contact.png)
 
 
 
